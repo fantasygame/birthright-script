@@ -71,13 +71,12 @@ function sumProvinces() {
 
 function updateRegencyPoints() {
   var regentSheet = getRegentSheet();
-  
+
   if (regencyPoints > maxRegencyPoints) {
     regencyPoints = maxRegencyPoints;
   }
   updateRegencyEarned(regentSheet, regencyPoints);
-  
-  Logger.log(currentReserve);
+
   if ((currentReserve + regencyPoints) > maxReserve) {
     currentReserve = maxReserve;
   } else {
@@ -133,15 +132,15 @@ function getSheetsOfType(type) {
 function sheetType(sheet) {
   return firstCellValue = sheet.getRange("A1").getValue();
 }
-  
+
 function getRegentSheet() {
   return getSheetsOfType("Regent")[0];
 }
-  
+
 function getMilitarySheet() {
   return getSheetsOfType("Military")[0];
 }
-  
+
 function getOtherHoldingsSheet() {
   return getSheetsOfType("OtherHoldings")[0];
 }
