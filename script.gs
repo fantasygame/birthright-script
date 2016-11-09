@@ -91,7 +91,7 @@ function earnedRegencyPoints() {
 
 function updateGoldBars() {
   var regentSheet = getRegentSheet();
-  updateGoldBarsEarned(regentSheet, provincesGoldBars);
+  updateGoldBarsEarned(regentSheet, earnedGoldBars());
 
   updateTreasury(regentSheet, currentTreasury + earnedGoldBars());
   updatetotalMaintCost(regentSheet, totalMaintenanceConst());
