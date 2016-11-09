@@ -29,8 +29,8 @@ function calculate() {
 
 function promptMessage() {
   s = goldBars.toFixed(2);
-  t = totalMaintCost.toFixed(2);
-  u = (goldBars - totalMaintCost).toFixed(2);
+  t = totalMaintenanceConst().toFixed(2);
+  u = (goldBars - totalMaintenanceConst()).toFixed(2);
   smsg = "You have earned " + regencyPoints + " Regency Points and "
   smsg = smsg + s + " Gold Bars. Maintenance Costs equals " + t
   smsg = smsg + " Gold Bars for a net of " + u + " Gold Bars."
@@ -92,9 +92,17 @@ function earnedRegencyPoints() {
 function updateGoldBars() {
   var regentSheet = getRegentSheet();
   updateGoldBarsEarned(regentSheet, goldBars);
-  totalMaintCost = maintenanceCost + militaryCost + courtCost + embassies + spyNetwork;
-  updateTreasury(regentSheet, (goldBars + currentTreasury + otherHoldingsGoldBars) - totalMaintCost);
-  updatetotalMaintCost(regentSheet, totalMaintCost);
+
+  updateTreasury(regentSheet, earnedGoldBars());
+  updatetotalMaintCost(regentSheet, totalMaintenanceConst());
+}
+
+function earnedGoldBars() {
+  return goldBars + otherHoldingsGoldBars - totalMaintenanceConst();
+}
+
+function totalMaintenanceConst() {
+  return maintenanceCost + militaryCost + courtCost + embassies + spyNetwork;
 }
 
 function updateRegencyEarned(regentSheet, regencyPoints) {
