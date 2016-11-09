@@ -83,8 +83,8 @@ function earnedRegencyPoints() {
     earnedRegency = maxRegencyPoints;
   }
 
-  if ((currentReserve + earnedRegency) > maxReserve) {
-    return maxReserve - (currentReserve + earnedRegency);
+  if ((currentReserve + earnedRegency) >= maxReserve) {
+    return maxReserve - currentReserve;
   }
   return earnedRegency;
 }
