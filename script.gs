@@ -55,8 +55,8 @@ function militaryCardData() {
 
 function otherHoldingsData() {
   var holdingsSheet = getOtherHoldingsSheet();
-  otherHoldingsGoldBars = holdingsSheet.getRange("G48").getValue();
-  otherHoldingsRegentPoints = holdingsSheet.getRange("E48").getValue();
+  otherHoldingsGoldBars = holdingsSheet.getRange("G20").getValue();
+  otherHoldingsRegentPoints = holdingsSheet.getRange("E20").getValue();
 }
 
 function sumProvinces() {
