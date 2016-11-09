@@ -1,6 +1,6 @@
-var goldBars = 0;
-var regencyPoints = 0;
-var maintenanceCost = 0;
+var provincesGoldBars = 0;
+var provincesRegencyPoints = 0;
+var provincesMaintenanceCost = 0;
 
 var maxRegencyPoints;
 var courtCost;
@@ -28,10 +28,10 @@ function calculate() {
 }
 
 function promptMessage() {
-  s = goldBars.toFixed(2);
+  s = provincesGoldBars.toFixed(2);
   t = totalMaintenanceConst().toFixed(2);
-  u = (goldBars - totalMaintenanceConst()).toFixed(2);
-  smsg = "You have earned " + regencyPoints + " Regency Points and "
+  u = (provincesGoldBars - totalMaintenanceConst()).toFixed(2);
+  smsg = "You have earned " + provincesRegencyPoints + " Regency Points and "
   smsg = smsg + s + " Gold Bars. Maintenance Costs equals " + t
   smsg = smsg + " Gold Bars for a net of " + u + " Gold Bars."
   alert(smsg);
@@ -62,9 +62,9 @@ function otherHoldingsData() {
 function sumProvinces() {
   var sheets = getSheetsOfType("Province");
   for (i = 0; i < sheets.length; i++) {
-    regencyPoints += sheets[i].getRange("F5").getValue();
-    goldBars += sheets[i].getRange("G5").getValue();
-    maintenanceCost += sheets[i].getRange("H37").getValue();
+    provincesRegencyPoints += sheets[i].getRange("F5").getValue();
+    provincesGoldBars += sheets[i].getRange("G5").getValue();
+    provincesMaintenanceCost += sheets[i].getRange("H37").getValue();
   }
 }
 
@@ -77,7 +77,7 @@ function updateRegencyPoints() {
 }
 
 function earnedRegencyPoints() {
-  var earnedRegency = regencyPoints + otherHoldingsRegentPoints;
+  var earnedRegency = provincesRegencyPoints + otherHoldingsRegentPoints;
 
   if (earnedRegency > maxRegencyPoints) {
     earnedRegency = maxRegencyPoints;
@@ -91,18 +91,18 @@ function earnedRegencyPoints() {
 
 function updateGoldBars() {
   var regentSheet = getRegentSheet();
-  updateGoldBarsEarned(regentSheet, goldBars);
+  updateGoldBarsEarned(regentSheet, provincesGoldBars);
 
   updateTreasury(regentSheet, earnedGoldBars());
   updatetotalMaintCost(regentSheet, totalMaintenanceConst());
 }
 
 function earnedGoldBars() {
-  return goldBars + otherHoldingsGoldBars - totalMaintenanceConst();
+  return provincesGoldBars + otherHoldingsGoldBars - totalMaintenanceConst();
 }
 
 function totalMaintenanceConst() {
-  return maintenanceCost + militaryCost + courtCost + embassies + spyNetwork;
+  return provincesMaintenanceCost + militaryCost + courtCost + embassies + spyNetwork;
 }
 
 function updateRegencyEarned(regentSheet, regencyPoints) {
