@@ -70,18 +70,23 @@ function sumProvinces() {
 
 function updateRegencyPoints() {
   var regentSheet = getRegentSheet();
+  var earnedRegency = earnedRegencyPoints();
 
-  if (regencyPoints > maxRegencyPoints) {
-    regencyPoints = maxRegencyPoints;
-  }
-  updateRegencyEarned(regentSheet, regencyPoints);
+  updateRegencyEarned(regentSheet, earnedRegency);
+  updateCurrentReserve(regentSheet, currentReserve + earnedRegency);
+}
 
-  if ((currentReserve + regencyPoints) > maxReserve) {
-    currentReserve = maxReserve;
-  } else {
-    currentReserve = currentReserve + regencyPoints + otherHoldingsRegentPoints;
+function earnedRegencyPoints() {
+  var earnedRegency = regencyPoints + otherHoldingsRegentPoints;
+
+  if (earnedRegency > maxRegencyPoints) {
+    earnedRegency = maxRegencyPoints;
   }
-  updateCurrentReserve(regentSheet, currentReserve);
+
+  if ((currentReserve + earnedRegency) > maxReserve) {
+    return maxReserve - (currentReserve + earnedRegency);
+  }
+  return earnedRegency;
 }
 
 function updateGoldBars() {
