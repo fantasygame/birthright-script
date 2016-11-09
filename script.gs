@@ -24,7 +24,6 @@ function calculate() {
   sumProvinces();
   updateRegencyPoints();
   updateGoldBars();
-  getSheets()[0].getRange("A2").setValue(regencyPoints);
   promptMessage();
 }
 
@@ -144,4 +143,3 @@ function getMilitarySheet() {
 function getOtherHoldingsSheet() {
   return getSheetsOfType("OtherHoldings")[0];
 }
-
