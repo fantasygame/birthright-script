@@ -34,7 +34,7 @@ function promptMessage() {
   smsg = "You have earned " + regencyPoints + " Regency Points and "
   smsg = smsg + s + " Gold Bars. Maintenance Costs equals " + t
   smsg = smsg + " Gold Bars for a net of " + u + " Gold Bars."
-  SpreadsheetApp.getUi().alert(smsg);
+  alert(smsg);
 }
 
 function regentCardData() {
@@ -142,4 +142,8 @@ function getMilitarySheet() {
 
 function getOtherHoldingsSheet() {
   return getSheetsOfType("OtherHoldings")[0];
+}
+
+function alert(message) {
+  SpreadsheetApp.getUi().alert(message);
 }
