@@ -1,6 +1,7 @@
 var provincesGoldBars = 0;
 var provincesRegencyPoints = 0;
 var provincesMaintenanceCost = 0;
+var provincesTradeRoutesGoldBars = 0;
 
 var maxRegencyPoints;
 var courtCost;
@@ -65,6 +66,7 @@ function sumProvinces() {
     provincesRegencyPoints += sheets[i].getRange("F5").getValue();
     provincesGoldBars += sheets[i].getRange("G5").getValue();
     provincesMaintenanceCost += sheets[i].getRange("H37").getValue();
+    provincesTradeRoutesGoldBars += sheets[i].getRange("E45").getValue();
   }
 }
 
@@ -98,7 +100,7 @@ function updateGoldBars() {
 }
 
 function earnedGoldBars() {
-  return provincesGoldBars + otherHoldingsGoldBars - totalMaintenanceConst();
+  return provincesGoldBars + otherHoldingsGoldBars + provincesTradeRoutesGoldBars - totalMaintenanceConst();
 }
 
 function totalMaintenanceConst() {
