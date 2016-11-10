@@ -17,6 +17,7 @@ var otherHoldingsGoldBars;
 var otherHoldingsRegentPoints;
 
 var totalMaintCost;
+var earnedRegencyForMessage;
 
 function calculate() {
   regentCardData();
@@ -29,12 +30,8 @@ function calculate() {
 }
 
 function promptMessage() {
-  s = provincesGoldBars.toFixed(2);
-  t = totalMaintenanceConst().toFixed(2);
-  u = (provincesGoldBars - totalMaintenanceConst()).toFixed(2);
-  smsg = "You have earned " + provincesRegencyPoints + " Regency Points and "
-  smsg = smsg + s + " Gold Bars. Maintenance Costs equals " + t
-  smsg = smsg + " Gold Bars for a net of " + u + " Gold Bars."
+  smsg = "You have earned " + earnedRegencyForMessage.toFixed(2) + " Regency Points and "
+  smsg = smsg + earnedGoldBars().toFixed(2) + " Gold Bars. Maintenance Costs equals " + totalMaintenanceConst().toFixed(2)
   alert(smsg);
 }
 
@@ -73,6 +70,7 @@ function sumProvinces() {
 function updateRegencyPoints() {
   var regentSheet = getRegentSheet();
   var earnedRegency = earnedRegencyPoints();
+  earnedRegencyForMessage = earnedRegency;
 
   updateRegencyEarned(regentSheet, earnedRegency);
   updateCurrentReserve(regentSheet, currentReserve + earnedRegency);
